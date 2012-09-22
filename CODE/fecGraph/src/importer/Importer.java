@@ -1,4 +1,4 @@
-package importer;
+package org.followthedata.importer;
 
 import org.neo4j.graphdb.RelationshipType;
 import org.neo4j.graphdb.index.Index;

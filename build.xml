@@ -1,8 +1,8 @@
 <project name="fecGraph" default="go" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-    <property name="lib.dir" value="lib" />
-    <property name="build.dir" value="bin" />
-    <property name="src.dir" value="src" />
+    <property name="lib.dir" value="CODE/fecGraph/lib" />
+    <property name="build.dir" value="CODE/fecGraph/bin" />
+    <property name="src.dir" value="CODE/fecGraph/src" />
     
     <!-- paths used for compilation and run  -->
     <path id="lib.path.id">
@@ -19,9 +19,6 @@
 	<property name="ivy.jar.dir" value="${basedir}/ivy" />
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
 
-    <property name="build.dir" value="build" />
-    <property name="src.dir" value="src" />
-    
     
     <target name="download-ivy" unless="skip.download">
     	<mkdir dir="${ivy.jar.dir}"/>
@@ -41,7 +38,7 @@
 	
     <target name="go" depends="install-ivy" 
             description="--> resolve dependencies, compile and run the project">
-        <ivy:retrieve />
+        <ivy:retrieve pattern="${lib.dir}/${ivy.retrieve.pattern}"/>
         
 		<echo message="compiling..."/>
         <mkdir dir="${build.dir}" />

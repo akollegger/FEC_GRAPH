@@ -1,4 +1,4 @@
-package importer;
+package org.followthedata.importer;
 
 /**
  * @author mh
