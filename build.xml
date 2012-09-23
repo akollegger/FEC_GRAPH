@@ -1,8 +1,18 @@
-<project name="fecGraph" default="go" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="fec-graph" default="go" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <property name="project.version" value="1.0"/>
+    <property name="project.main.class" value="org.followthedata.importer.Tool"/>
+    <property name="project.jar" value="${ant.project.name}-${project.version}.jar"/>
 
     <property name="lib.dir" value="CODE/fecGraph/lib" />
     <property name="build.dir" value="CODE/fecGraph/bin" />
     <property name="src.dir" value="CODE/fecGraph/src" />
+    <property name="bin.dir" value="bin" />
+
+    <property name="neo4j.home.dir" location="neo4j-home" />
+    <property name="neo4j.data.dir" location="fec.graphdb" />
+    <property name="neo4j.version" value="1.8.RC1" />
+    <property name="neo4j.server" value="neo4j-community-${neo4j.version}" />
     
     <!-- paths used for compilation and run  -->
     <path id="lib.path.id">
@@ -38,13 +48,30 @@
 	
     <target name="go" depends="install-ivy" 
             description="--> resolve dependencies, compile and run the project">
-        <ivy:retrieve pattern="${lib.dir}/${ivy.retrieve.pattern}"/>
+        <ivy:retrieve pattern="${lib.dir}/[artifact]-[revision].[ext]" sync="true"/>
         
 		<echo message="compiling..."/>
         <mkdir dir="${build.dir}" />
         <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" includeAntRuntime="false"/>
         
     </target>
+
+    <target name="jar" depends="go">
+        <jar destfile="${lib.dir}/${project.jar}" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${project.main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="tool" depends="jar">
+        <mkdir dir="${bin.dir}" />
+        <echo file="${bin.dir}/fec2graph">#!/usr/bin/env bash
+exec java -cp "${lib.dir}/*" ${project.main.class} "$@"
+        </echo>
+        <chmod file="${bin.dir}/fec2graph" perm="+x"/>
+    </target>
+
 
 	
     <!-- ================================= 
@@ -53,6 +80,7 @@
     <target name="clean" description="--> clean the project">
         <delete includeemptydirs="true" quiet="true">
             <fileset dir="${build.dir}" />
+            <fileset dir="${bin.dir}" />
     	</delete>
     </target>
 	
@@ -70,4 +98,46 @@
 			description="--> clean the ivy cache">
 		<ivy:cleancache />
 	</target>
+
+
+    <!-- ================================= 
+          target: neo4j-install
+         ================================= -->
+    <target name="-check-neo4j-install">
+        <available file="${neo4j.server}/bin/neo4j" property="neo4j.installed"/>
+    </target>
+
+    <target name="neo4j-install" depends="-check-neo4j-install" description="downloads Neo4j server" unless="${neo4j.installed}">
+        <get src="http://dist.neo4j.org/${neo4j.server}-unix.tar.gz" skipexisting="true" dest="."/>
+        <gunzip src="${neo4j.server}-unix.tar.gz"/>
+        <untar src="${neo4j.server}-unix.tar" dest="." />
+        <delete file="${neo4j.server}-unix.tar" />
+        <chmod file="${neo4j.server}/bin/neo4j" perm="+x"/>
+    </target>
+
+    <target name="neo4j-config" depends="neo4j-install" description="updates Neo4j configuration to use imported FEC graph database">
+        <exec executable="sed">
+            <arg value="-e"/>
+            <arg value="/org\.neo4j\.server\.database\.location/d"/>
+            <arg value="-i"/>
+            <arg value=""/>
+            <arg value="${neo4j.server}/conf/neo4j-server.properties"/>
+        </exec>
+        <echo file="${neo4j.server}/conf/neo4j-server.properties" append="true">org.neo4j.server.database.location=${neo4j.data.dir}
+        </echo>
+    </target>
+
+    <target name="neo4j-start" depends="neo4j-config">
+        <exec executable="${neo4j.server}/bin/neo4j">
+            <arg value="start" />
+        </exec>
+    </target>
+
+
+    <target name="neo4j-stop" depends="neo4j-config">
+        <exec executable="${neo4j.server}/bin/neo4j">
+            <arg value="stop" />
+        </exec>
+    </target>
+
 </project>

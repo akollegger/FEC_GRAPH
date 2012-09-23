@@ -197,17 +197,20 @@ public class Importer {
         }
 
         private int split(String line) {
-            final StringTokenizer st = new StringTokenizer(line, delim,true);
+            // final StringTokenizer st = new StringTokenizer(line, delim,true);
+            final String[] values = line.split(delim);
+
 //            System.out.println(line);
+            if (values.length < lineSize) {
+                System.err.println("ERROR: line has fewer than expected fields (" + lineSize + ")");
+                System.err.println(line);
+                System.exit(1); // ABK TODO: manage error codes
+            }
             int count=0;
             for (int i = 0; i < lineSize; i++) {
-                String value = st.nextToken();
-                if (value.equals(delim)) {
-                    lineData[i] = null;
-                } else {
-                    lineData[i] = value.trim().isEmpty() ? null : value;
-                    if (i< lineSize -1) st.nextToken();
-                }
+                // String value = st.nextToken();
+                String value = values[i];
+                lineData[i] = value.trim().isEmpty() ? null : value;
                 if (i >= offset && lineData[i]!=null) {
                     data[count++]=fields[i];
                     data[count++]=types[i].convert(lineData[i]);
@@ -371,8 +374,9 @@ public class Importer {
             Map<String, Object> properties = MapUtil.map( "commID", strTemp[2]);
     		properties.put("donatingOrg", strTemp[3]);
     		properties.put("donorLast", strTemp[4]);
+            properties.put("donorFirst", strTemp[5]);
     		properties.put("donorState", strTemp[7]);
-    		properties.put("donorFullName", strTemp[15]);
+    		// properties.put("donorFullName", strTemp[15]);
     		idxSuperPacContribs.add(pacCont,properties);
             report.dots();
         }
