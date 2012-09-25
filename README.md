@@ -21,6 +21,10 @@ Follow these Steps
 3. `ant initialize`
 4. `ant`
 5. `./bin/fec2graph --force --importer=[RAW|CONNECTED|RELATED]`
+  - choose one of the importers, like `./bin/fec2graph --force --impoerter=RAW`
+  - RAW: imports records with no modifications
+  - CONNECTED: connects imported records based on cross-referenced IDs
+  - RELATED: replaces "join table" records with graph relationships
 6. `ant neo4j-start`
 
 Wanna code? Get a Neo4j Driver

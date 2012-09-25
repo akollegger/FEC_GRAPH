@@ -2,5 +2,4 @@
 *.graphdb
 ivy/
 bin/
-batch.properties
 neo4j-community*
