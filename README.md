@@ -27,6 +27,20 @@ Follow these Steps
   - RELATED: replaces "join table" records with graph relationships
 6. `ant neo4j-start`
 
+Indexed Nodes
+-------------
+
+- `candidates.CAND_ID`
+- `candidates.CAND_NAME`
+- `committees.CMTE_ID`
+- `committees.CMTE_NM`
+
+Sample queries using indexes:
+
+`start cand=node:candidates(CAND_ID='P80003627')`
+`start comm=node:candidates(CMTE_ID='C90012980')`
+
+
 Wanna code? Get a Neo4j Driver
 ------------------------------
 
