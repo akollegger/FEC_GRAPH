@@ -65,7 +65,7 @@ public class Tool {
       String selectedDataDir = "DATA";
       switch (selectedImplementor) {
         case DFAUTH: 
-          //selectedImporter = new Importer(graphDbDirectory);
+          // selectedImporter = new Importer("DATA");
         case RAW:
           selectedImporter = new org.followthedata.importer.fec.RawFecImporter();
           selectedDataDir = "FEC-DATA";

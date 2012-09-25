@@ -26,19 +26,19 @@ public class Importer {
     private BatchInserter db;
     private BatchInserterIndexProvider lucene;
  	
-    public static final File STORE_DIR = new File("/Volumes/HD1/Users/dsfauth/fec_200");
-    public static final File CAND_FILE = new File("/Volumes/HD1/Users/dsfauth/fecdata/candidate.dta");
-    public static final File COMMITTEE_FILE = new File("/Volumes/HD1/Users/dsfauth/fecdata/committee.dta");
-    public static final File INDIV_FILE1 = new File("/Volumes/HD1/Users/dsfauth/fecdata/indivContrib1.dta");
-    public static final File INDIV_FILE2 = new File("/Volumes/HD1/Users/dsfauth/fecdata/indivContrib2.dta");
-    public static final File CONTRIB_FILE1 = new File("/Volumes/HD1/Users/dsfauth/fecdata/allIndivContrib1.dta");
-    public static final File CONTRIB_FILE2 = new File("/Volumes/HD1/Users/dsfauth/fecdata/allIndivContrib2.dta");
-    public static final File CONTRIB_FILE3 = new File("/Volumes/HD1/Users/dsfauth/fecdata/allIndivContrib3.dta");
-    public static final File CONTRIB_FILE4 = new File("/Volumes/HD1/Users/dsfauth/fecdata/allIndivContrib4.dta");
-    public static final File CONTRIB_FILE5 = new File("/Volumes/HD1/Users/dsfauth/fecdata/allIndivContrib5.dta");
-    public static final File SUPERPAC_FILE = new File("/Volumes/HD1/Users/dsfauth/fecdata/superPacList.dta");
-    public static final File SUPERPACEXPEND_FILE = new File("/Volumes/HD1/Users/dsfauth/fecdata/superPacExpend.dta");
-    public static final File SUPERPACCONTRIB_FILE = new File("/Volumes/HD1/Users/dsfauth/fecdata/superPacDonors.dta");
+    public static final File STORE_DIR = new File("./adv-fec.graphdb");
+    public static final File CAND_FILE = new File("./DATA/candidate.dta");
+    public static final File COMMITTEE_FILE = new File("./DATA/committee.dta");
+    public static final File INDIV_FILE1 = new File("./DATA/indivContrib1.dta");
+    public static final File INDIV_FILE2 = new File("./DATA/indivContrib2.dta");
+    public static final File CONTRIB_FILE1 = new File("./DATA/allIndivContrib1.dta");
+    public static final File CONTRIB_FILE2 = new File("./DATA/allIndivContrib2.dta");
+    public static final File CONTRIB_FILE3 = new File("./DATA/allIndivContrib3.dta");
+    public static final File CONTRIB_FILE4 = new File("./DATA/allIndivContrib4.dta");
+    public static final File CONTRIB_FILE5 = new File("./DATA/allIndivContrib5.dta");
+    public static final File SUPERPAC_FILE = new File("./DATA/superPacList.dta");
+    public static final File SUPERPACEXPEND_FILE = new File("./DATA/superPacExpend.dta");
+    public static final File SUPERPACCONTRIB_FILE = new File("./DATA/superPacDonors.dta");
     public static final int USERS = 3000000;
     
     enum MyRelationshipTypes implements RelationshipType {SUPPORTS, FOR, CONTRIBUTES, RECEIVES, GAVE,SUPERPACGIFT,SUPERPACEXPEND,SUPERPACACTION}
