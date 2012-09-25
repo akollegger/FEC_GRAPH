@@ -9,6 +9,10 @@ Requires
 - [Java](http://www.oracle.com/us/technologies/java/overview/index.html)
 - [Apache Ant](http://ant.apache.org)
 
+*Note*: that Java is just required for the initial batch import of data. The dataset can then 
+be explored with Neo4j's own Cypher query language, or using one of the language drivers
+listed below.
+
 Follow these Steps
 ------------------
 
