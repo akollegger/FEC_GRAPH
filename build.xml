@@ -72,10 +72,10 @@
     <target name="tool" depends="jar">
         <mkdir dir="${bin.dir}" />
         <echo file="${bin.dir}/fec2graph">#!/usr/bin/env bash
-exec java -cp "${lib.dir}/*" ${project.main.class} "$@"
+exec java -Xmx1G -cp "${lib.dir}/*" ${project.main.class} "$@"
         </echo>
         <echo file="${bin.dir}/advancedImporter">#!/usr/bin/env bash
-exec java -cp "${lib.dir}/*" org.followthedata.importer.Importer "$@"
+exec java -Xmx1G -cp "${lib.dir}/*" org.followthedata.importer.Importer "$@"
         </echo>
 
         <chmod file="${bin.dir}/fec2graph" perm="+x"/>
