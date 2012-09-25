@@ -49,7 +49,7 @@
 
     </target>    
 	
-    <target name="update-ivy" depends="install-ivy">
+    <target name="initialize" depends="install-ivy, prep-data">
         <ivy:retrieve pattern="${lib.dir}/[artifact]-[revision].[ext]" sync="true"/>
     </target>
 
