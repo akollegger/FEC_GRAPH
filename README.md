@@ -77,7 +77,7 @@ Wanna code? Get a Neo4j Driver
 - [Neo4Django - Django](https://github.com/scholrly/neo4django/)
 - [Neo4jClient - .net](http://nuget.org/packages/Neo4jClient/)
 - [Neo4j-GO - Google Go](https://github.com/davemeehan/Neo4j-GO)
-
+- [Neocons - Clojure](http://clojureneo4j.info/)
 References
 ----------
 
