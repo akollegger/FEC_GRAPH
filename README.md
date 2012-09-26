@@ -40,6 +40,31 @@ Sample queries using indexes:
 `start cand=node:candidates(CAND_ID='P80003627')`
 `start comm=node:candidates(CMTE_ID='C90012980')`
 
+Cypher Challenge
+----------------
+
+Query for this...
+
+// All presidential candidates for 2012
+
+// Most mythical presidential candidate
+
+// Top 10 Presidential candidates according to number of campaign committees
+
+// find President Barack Obama
+
+// lookup Obama by his candidate ID
+
+// find Presidential Candidate Mitt Romney
+
+// lookup Romney by his candidate ID
+
+// find the shortest path of funding between Obama and Romney
+
+// 10 top individual contributions to Obama
+
+// 10 top individual contributions to Romney
+
 
 Wanna code? Get a Neo4j Driver
 ------------------------------
