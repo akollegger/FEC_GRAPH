@@ -96,7 +96,7 @@ public class Tool {
           selectedImporter = new org.followthedata.importer.fec.CaliforniaFecImporter();
           selectedDataDir = "FEC-DATA";
           break;
-          default: 
+        default: 
           selectedImporter = new org.followthedata.importer.fec.RawFecImporter();
           selectedDataDir = "FEC-DATA";
           break;
