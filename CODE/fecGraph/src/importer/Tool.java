@@ -13,7 +13,10 @@ public class Tool {
       AKOLLEGGER,
       RAW,
       CONNECTED,
-      RELATED
+      RELATED,
+      LIMITED,
+      PRESIDENTIAL,
+      CALIFORNIA
   }
 
   public static void main(String[] args) {
@@ -76,6 +79,18 @@ public class Tool {
           break;
         case RELATED:
           selectedImporter = new org.followthedata.importer.fec.RelatedFecImporter();
+          selectedDataDir = "FEC-DATA";
+          break;
+        case LIMITED:
+          selectedImporter = new org.followthedata.importer.fec.LimitedFecImporter();
+          selectedDataDir = "FEC-DATA";
+          break;
+        case PRESIDENTIAL:
+          selectedImporter = new org.followthedata.importer.fec.PresidentialFecImporter();
+          selectedDataDir = "FEC-DATA";
+          break;
+        case CALIFORNIA:
+          selectedImporter = new org.followthedata.importer.fec.CaliforniaFecImporter();
           selectedDataDir = "FEC-DATA";
           break;
         default: 
