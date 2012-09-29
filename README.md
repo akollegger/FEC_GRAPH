@@ -85,3 +85,19 @@ References
 - [Neo4j](http://neo4j.org) - the graph database
 - [Neo4j Cypher Reference](http://docs.neo4j.org/chunked/milestone/cypher-query-lang.html)
 - [FEC Campaign Finance Data](http://www.fec.gov/finance/disclosure/ftpdet.shtml)
+
+- [Candidate Record](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCandidateMaster.shtml)
+  - CAND_ID Candidate Identification
+  - CAND_NAME Candidate Name
+  - CAND_PTY_AFFILIATION Party Affiliation
+  - CAND_ELECTION_YR Year of Election
+  - CAND_OFFICE Candidate Office (P)resident, (S)enate, (H)ouse
+  - CAND_ST State
+  - CAND_CITY City
+- [Committee Record](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCommitteeMaster.shtml)
+  - CMTE_ID Committee Identification
+  - CMTE_NM Committee Name
+  - CAND_ID Candidate Identification
+- [Candidate Committee Linkage](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCandCmteLinkage.shtml)
+- [Committee to Committee Contributions](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCommitteetoCommittee.shtml)
+- [Committee to Candidates Contributions](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryContributionstoCandidates.shtml)
