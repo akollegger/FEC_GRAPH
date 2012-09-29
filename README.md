@@ -101,3 +101,5 @@ References
 - [Candidate Committee Linkage](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCandCmteLinkage.shtml)
 - [Committee to Committee Contributions](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCommitteetoCommittee.shtml)
 - [Committee to Candidates Contributions](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryContributionstoCandidates.shtml)
+
+!["RELATED" model](https://raw.github.com/akollegger/FEC_GRAPH/master/FEC-model.gif)
