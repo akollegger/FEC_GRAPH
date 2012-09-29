@@ -20,11 +20,12 @@ Follow these Steps
 2. `cd FEC_GRAPH`
 3. `ant initialize`
 4. `ant`
-5. `./bin/fec2graph --force --importer=[RAW|CONNECTED|RELATED]`
-  - choose one of the importers, like `./bin/fec2graph --force --impoerter=RAW`
+5. `./bin/fec2graph --force --importer=[RAW|CONNECTED|RELATED|LIMITED]`
+  - choose one of the importers, like `./bin/fec2graph --force --importer=RAW`
   - RAW: imports records with no modifications
   - CONNECTED: connects imported records based on cross-referenced IDs
   - RELATED: replaces "join table" records with graph relationships
+  - LIMITED: only imports 2012 presidential candidates for a smaller dataset
 6. `ant neo4j-start`
 
 Indexed Nodes

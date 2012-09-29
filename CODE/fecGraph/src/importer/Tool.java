@@ -3,6 +3,8 @@ package org.followthedata.importer;
 import org.apache.commons.cli.*;
 import java.io.*;
 import java.util.*;
+
+import org.followthedata.importer.fec.LimitedFecImporter;
 import org.neo4j.kernel.impl.util.FileUtils;
 
 
@@ -13,7 +15,8 @@ public class Tool {
       AKOLLEGGER,
       RAW,
       CONNECTED,
-      RELATED
+      RELATED,
+      LIMITED
   }
 
   public static void main(String[] args) {
@@ -78,7 +81,11 @@ public class Tool {
           selectedImporter = new org.followthedata.importer.fec.RelatedFecImporter();
           selectedDataDir = "FEC-DATA";
           break;
-        default: 
+        case LIMITED:
+          selectedImporter = new LimitedFecImporter();
+          selectedDataDir = "FEC-DATA";
+          break;
+        default:
           selectedImporter = new org.followthedata.importer.fec.RawFecImporter();
           selectedDataDir = "FEC-DATA";
           break;
