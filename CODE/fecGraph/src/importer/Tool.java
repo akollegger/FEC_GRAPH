@@ -3,6 +3,8 @@ package org.followthedata.importer;
 import org.apache.commons.cli.*;
 import java.io.*;
 import java.util.*;
+
+import org.followthedata.importer.fec.LimitedFecImporter;
 import org.neo4j.kernel.impl.util.FileUtils;
 
 
@@ -14,6 +16,7 @@ public class Tool {
       RAW,
       CONNECTED,
       RELATED,
+      HEAD,
       LIMITED,
       PRESIDENTIAL,
       CALIFORNIA
@@ -93,7 +96,7 @@ public class Tool {
           selectedImporter = new org.followthedata.importer.fec.CaliforniaFecImporter();
           selectedDataDir = "FEC-DATA";
           break;
-        default: 
+          default: 
           selectedImporter = new org.followthedata.importer.fec.RawFecImporter();
           selectedDataDir = "FEC-DATA";
           break;

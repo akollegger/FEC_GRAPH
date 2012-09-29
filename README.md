@@ -20,11 +20,12 @@ Follow these Steps
 2. `cd FEC_GRAPH`
 3. `ant initialize`
 4. `ant`
-5. `./bin/fec2graph --force --importer=[RAW|CONNECTED|RELATED]`
-  - choose one of the importers, like `./bin/fec2graph --force --impoerter=RAW`
+5. `./bin/fec2graph --force --importer=[RAW|CONNECTED|RELATED|LIMITED]`
+  - choose one of the importers, like `./bin/fec2graph --force --importer=RAW`
   - RAW: imports records with no modifications
   - CONNECTED: connects imported records based on cross-referenced IDs
   - RELATED: replaces "join table" records with graph relationships
+  - LIMITED: only imports 2012 presidential candidates for a smaller dataset
 6. `ant neo4j-start`
 
 Indexed Nodes
@@ -77,10 +78,28 @@ Wanna code? Get a Neo4j Driver
 - [Neo4Django - Django](https://github.com/scholrly/neo4django/)
 - [Neo4jClient - .net](http://nuget.org/packages/Neo4jClient/)
 - [Neo4j-GO - Google Go](https://github.com/davemeehan/Neo4j-GO)
-
+- [Neocons - Clojure](http://clojureneo4j.info/)
 References
 ----------
 
 - [Neo4j](http://neo4j.org) - the graph database
 - [Neo4j Cypher Reference](http://docs.neo4j.org/chunked/milestone/cypher-query-lang.html)
 - [FEC Campaign Finance Data](http://www.fec.gov/finance/disclosure/ftpdet.shtml)
+
+- [Candidate Record](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCandidateMaster.shtml)
+  - CAND_ID Candidate Identification
+  - CAND_NAME Candidate Name
+  - CAND_PTY_AFFILIATION Party Affiliation
+  - CAND_ELECTION_YR Year of Election
+  - CAND_OFFICE Candidate Office (P)resident, (S)enate, (H)ouse
+  - CAND_ST State
+  - CAND_CITY City
+- [Committee Record](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCommitteeMaster.shtml)
+  - CMTE_ID Committee Identification
+  - CMTE_NM Committee Name
+  - CAND_ID Candidate Identification
+- [Candidate Committee Linkage](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCandCmteLinkage.shtml)
+- [Committee to Committee Contributions](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryCommitteetoCommittee.shtml)
+- [Committee to Candidates Contributions](http://www.fec.gov/finance/disclosure/metadata/DataDictionaryContributionstoCandidates.shtml)
+
+!["RELATED" model](https://raw.github.com/akollegger/FEC_GRAPH/master/FEC-model.gif)
