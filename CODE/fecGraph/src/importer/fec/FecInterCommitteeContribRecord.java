@@ -83,14 +83,68 @@ public class FecInterCommitteeContribRecord extends DataRecord {
   public FieldSpec[] getFieldSpecs() {
     return fieldSpecs;
   }
-
+  /**
+   * A 9-character alpha-numeric code assigned to a committee by the Federal Election Commission. 
+   */
   public String committeeID() { return String.valueOf(getField(Fields.CMTE_ID.name())); }
+
+  /** Indicates if the report being filed is new (N), an amendment (A) to a previous report, or a termination (T) report. */
   public Integer amendmentIndicator() { return (Integer)getField(Fields.AMNDT_IND.name()); }
+
+  /** 
+   * Indicates the type of report filed. One of:
+   * <table>
+   * <tr><th>Code</th><th>Type</th><th>Explanation</th></tr>
+   * <tr><td>C</td><td>Communication</td><td>Cost  Organizations like corporations or unions may prepare communications for their employees or members that advocate the election of specific candidates and they must disclose them under certain circumstances. These are usually paid with direct corporate or union funds rather than from PACs.</td></tr>
+   * <tr><td>D</td><td>Delegate Committee</td><td>Delegate committees are organized for the purpose of influencing the selection of delegates to Presidential nominating conventions. The term includes a group of delegates, a group of individuals seeking to become delegates, and a group of individuals supporting delegates.</td></tr>
+   * <tr><td>E</td><td>Electioneering Communication</td><td>Groups (other than PACs) making Electioneering Communications</td></tr>
+   * <tr><td>H</td><td>House</td><td>Campaign committees for candidates for the House of Representatives</td></tr>
+   * <tr><td>I</td><td>Independent Expenditor (Person or Group)</td><td>Individuals or groups (other than PACs) making independent expenditures over $250 in a year must disclose those expenditures</td></tr>
+   * <tr><td>N</td><td>PAC - Nonqualified</td><td>PACs that have not yet been in existence for six months and received contributions from 50 people and made contributions to five federal candidates. These committees have lower limits for their contributions to candidates.</td></tr>
+   * <tr><td>O</td><td>Independent Expenditure-Only (Super PACs)</td><td>Political Committee that has filed a statement consistent with AO 2010-09 or AO 2010-11. For more information about independent expenditures</td></tr>
+   * <tr><td>P</td><td>Presidential</td><td>Campaign committee for candidate for President</td></tr>
+   * <tr><td>Q</td><td>PAC - Qualified</td><td>PACs that have been in existence for six months and received contributions from 50 people and made contributions to five federal candidates</td></tr>
+   * <tr><td>S</td><td>Senate</td><td>Campaign committee for candidate for Senate</td></tr>
+   * <tr><td>U</td><td>Single Candidate Independent Expenditure</td><td>Political Committee For more information about independent expenditures</td></tr>
+   * <tr><td>V</td><td>PAC with Non-Contribution Account - Nonqualified</td><td>Political committees with non-contribution accounts</td></tr>
+   * <tr><td>W</td><td>PAC with Non-Contribution Account - Qualified</td><td>Political committees with non-contribution accounts</td></tr>
+   * <tr><td>X</td><td>Party - Nonqualified</td><td>Party committees that have not yet been in existence for six months and received contributions from 50 people, unless they are affiliated with another party committee that has met these requirements.</td></tr>
+   * <tr><td>Y</td><td>Party - Qualified</td><td>Party committees that have existed for at least six months and received contributions from 50 people or are affiliated with another party committee that meets these requirements.</td></tr>
+   * <tr><td>Z</td><td>National Party Nonfederal Account</td><td>National party nonfederal accounts. Not permitted after enactment of Bipartisan Campaign Reform Act of 2002.</td></tr>
+   */
   public Integer reportType() { return (Integer)getField(Fields.RPT_TP.name()); }
+
+  /**
+   * This code indicates the election for which the contribution was made. EYYYY (election Primary, General, Other plus election year).
+   * In practice, seems to not include election year, ust 'P', 'G', or 'O' (or null).
+   */
   public String primaryGeneralIndicator() { return String.valueOf(getField(Fields.TRANSACTION_PGI.name())); }
+
+  /** Indicates the physical location of the filing. */
   public String imageNum() { return String.valueOf(getField(Fields.IMAGE_NUM.name())); }
+
+  /** 
+   * Transaction types 10J, 11J, 13, 15J, 15Z, 16C, 16F, 16G, 16R, 17R, 17Z, 18G, 18J, 18K, 18U, 19J, 20, 20C, 20F, 20G, 20R, 22H, 22Z, 23Y, 24A, 24C, 24E, 24F, 24G, 24H, 24K, 24N, 24P, 24R, 24U, 24Z and 29 are included in the OTH file.
+   * @see http://www.fec.gov/finance/disclosure/metadata/DataDictionaryTransactionTypeCodes.shtml
+   */
   public String transactionType() { return String.valueOf(getField(Fields.TRANSACTION_TP.name())); }
+
+  /**
+   * One of:
+   * <ul>
+   * <li>CAN = Candidate</li>
+   * <li>CCM = Candidate Committee</li>
+   * <li>COM = Committee</li>
+   * <li>IND = Individual (a person)</li>
+   * <li>ORG = Organization (not a committee and not a person)</li>
+   * <li>PAC = Political Action Committee</li>
+   * <li>PTY = Party Organizationv
+   * </ul>
+   */
   public String entityType() { return String.valueOf(getField(Fields.ENTITY_TP.name())); }
+
+  /**
+   */
   public String name() { return String.valueOf(getField(Fields.NAME.name())); }
   public String city() { return String.valueOf(getField(Fields.CITY.name())); }
   public String state() { return String.valueOf(getField(Fields.STATE.name())); }

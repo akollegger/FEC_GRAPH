@@ -66,6 +66,20 @@ Query for this...
 
 // 10 top individual contributions to Romney
 
+*Hint*: New to all this? Here's how to identifiy one of the many fake candidates registered with the FEC.
+
+After successfully listing all candidates for the first query, you could page through the listing to look for names that seem.. just off. Use limit and skip in the return clause to page through the long listing:
+
+    start candidate=node:candidates('CAND_ID:*') 
+    where candidate.CAND_OFFICE='{fill this in}' AND candidate.CAND_ELECTION_YR='{this too}' 
+    return candidate.CAND_NAME skip 100 limit 100;
+
+Once you spot one of the many candidate names that isn't real, you can query for it directly: 
+
+    start candidate=node:candidates(CAND_NAME:'CLAUS, SANTA')
+    return candidate;
+
+To learn more about querying with Cypher, look to the excellent [Neo4j Manual](http://docs.neo4j.org).
 
 Wanna code? Get a Neo4j Driver
 ------------------------------
@@ -79,6 +93,7 @@ Wanna code? Get a Neo4j Driver
 - [Neo4jClient - .net](http://nuget.org/packages/Neo4jClient/)
 - [Neo4j-GO - Google Go](https://github.com/davemeehan/Neo4j-GO)
 - [Neocons - Clojure](http://clojureneo4j.info/)
+
 References
 ----------
 
